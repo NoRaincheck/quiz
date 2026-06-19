@@ -472,7 +472,7 @@ What tax consideration should you be aware of when fully restructuring a losing 
 ```quiz
 What trade-off does the full restructure approach involve?
 
-  - [ ] You gain a lower LEAP strike but lose ~180 days of LEAP time
+  - [x] You gain a lower LEAP strike but lose ~180 days of LEAP time
     Correct — the new LEAP expires sooner, reducing total time value.
 
   - [ ] You lose all premium collected so far
