@@ -1,0 +1,11 @@
+{
+  "tasks": {
+    "build": "deno run -A src/build.ts",
+    "dev": "deno run -A --watch src/build.ts"
+  },
+  "imports": {
+    "@deno/gfm": "jsr:@deno/gfm@0.12",
+    "@std/fs": "jsr:@std/fs@1",
+    "@std/path": "jsr:@std/path@1"
+  }
+}
