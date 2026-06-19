@@ -7,28 +7,31 @@ group: "Options Trading"
 
 # Shorting Options — Intrinsic & Extrinsic Value Study Guide
 
-> A self-study companion built from the Options Trading Beginners course (Part 4). Learn how intrinsic and extrinsic value work when you **sell** options instead of buying them.
+> A self-study companion built from the Options Trading Beginners course (Part 4). Learn how
+> intrinsic and extrinsic value work when you **sell** options instead of buying them.
 
 ---
 
 ## 1. Buying vs. Shorting Options
 
-Until now, you've only learned about **buying** options — a "buy low, sell high" approach. But just like you can short stocks (sell first, buy back later), you can also **short options**.
+Until now, you've only learned about **buying** options — a "buy low, sell high" approach. But just
+like you can short stocks (sell first, buy back later), you can also **short options**.
 
-| | **Buying an Option** | **Shorting an Option** |
-|---|---|---|
-| **Action** | Pay premium to buy | Collect premium by selling |
-| **Profit when** | Option price **increases** | Option price **decreases** |
-| **Risk** | Limited to premium paid | **Unlimited** (for calls) |
-| **Needs margin?** | No | **Yes** (collateral required) |
+|                   | **Buying an Option**       | **Shorting an Option**        |
+| ----------------- | -------------------------- | ----------------------------- |
+| **Action**        | Pay premium to buy         | Collect premium by selling    |
+| **Profit when**   | Option price **increases** | Option price **decreases**    |
+| **Risk**          | Limited to premium paid    | **Unlimited** (for calls)     |
+| **Needs margin?** | No                         | **Yes** (collateral required) |
 
-When you short an option, you're betting that the option's price will fall as time passes and extrinsic value decays.
+When you short an option, you're betting that the option's price will fall as time passes and
+extrinsic value decays.
 
 ---
 
 ### 🧠 Quiz 1 — Buying vs. Shorting
 
-````quiz
+```quiz
 What is the key difference between buying and shorting an option?
 
   - [ ] Buying costs more money
@@ -42,9 +45,9 @@ What is the key difference between buying and shorting an option?
 
   - [ ] Buying has unlimited risk
     Buying has limited risk (you can only lose the premium). Shorting has unlimited risk (for calls).
-````
+```
 
-````quiz
+```quiz
 When you short an option, what do you do first?
 
   - [ ] Pay the premium to acquire the option
@@ -58,7 +61,7 @@ When you short an option, what do you do first?
 
   - [ ] Exercise the option
     You don't own the option — you sold it.
-````
+```
 
 ---
 
@@ -70,16 +73,20 @@ Let's look at a concrete example from the course:
 - **Option:** June $125 call, **36 days** to expiration
 - **Option price:** $4.66 (premium = **$466**)
 
-Since the strike ($125) is **above** the stock price ($120.59), this call option has **zero intrinsic value** — its entire $4.66 premium is **extrinsic (time) value**.
+Since the strike ($125) is **above** the stock price ($120.59), this call option has **zero
+intrinsic value** — its entire $4.66 premium is **extrinsic (time) value**.
 
 This is ideal for shorting because:
+
 - The option is 100% extrinsic, meaning the entire premium is time value that will decay.
 - The stock is below the strike, so there's no immediate intrinsic pressure.
 - As time passes and the stock stays below $125, the extrinsic value shrinks.
 
-If you short this option, you **collect $466** into your account. But this is **not profit yet** — you still need to close the trade by buying back the option at a lower price.
+If you short this option, you **collect $466** into your account. But this is **not profit yet** —
+you still need to close the trade by buying back the option at a lower price.
 
-After 30 days, if IWM stays below $125, the option (with 1 day left) is worth only **$0.23** ($23 premium). You buy it back for $23, and your profit is:
+After 30 days, if IWM stays below $125, the option (with 1 day left) is worth only **$0.23** ($23
+premium). You buy it back for $23, and your profit is:
 
 ```
 $466 (collected) − $23 (paid to close) = $443 profit
@@ -89,7 +96,7 @@ $466 (collected) − $23 (paid to close) = $443 profit
 
 ### 🧠 Quiz 2 — Intrinsic Value in Short Positions
 
-````quiz
+```quiz
 In the IWM example, the stock is at $120.59 and the $125 call option has a premium of $4.66. What is the intrinsic value of this option?
 
   - [ ] $4.66
@@ -103,9 +110,9 @@ In the IWM example, the stock is at $120.59 and the $125 call option has a premi
 
   - [ ] $125
     That's the strike price.
-````
+```
 
-````quiz
+```quiz
 Why is a 100% extrinsic value option attractive to someone who wants to short it?
 
   - [ ] Because extrinsic value increases over time
@@ -119,7 +126,7 @@ Why is a 100% extrinsic value option attractive to someone who wants to short it
 
   - [ ] Because shorting 100% extrinsic options requires no margin
     Shorting always requires a margin account regardless of the option's composition.
-````
+```
 
 ---
 
@@ -128,38 +135,44 @@ Why is a 100% extrinsic value option attractive to someone who wants to short it
 This is where the **unlimited risk** of shorting calls becomes painfully clear.
 
 ### The Setup
+
 - **April 9:** Netflix closes at **$370**
 - You believe Netflix will NOT rise above $400
 - You **short** the June $400 call for **$17** ($1,700 premium)
 
 ### What Happened
+
 - A few days later, Netflix surges to **$440**
 - The June $400 call option now trades at **$62.50** ($6,250 premium)
 
 ### The Breakdown at $440 Stock Price
 
-| Component | Value |
-|-----------|-------|
-| Stock price | $440 |
-| Strike price | $400 |
-| **Intrinsic value** | **$40.00** ($440 − $400) |
-| Option price | $62.50 |
+| Component           | Value                        |
+| ------------------- | ---------------------------- |
+| Stock price         | $440                         |
+| Strike price        | $400                         |
+| **Intrinsic value** | **$40.00** ($440 − $400)     |
+| Option price        | $62.50                       |
 | **Extrinsic value** | **$22.50** ($62.50 − $40.00) |
 
 ### Your Loss
+
 ```
 $1,700 (collected) − $6,250 (paid to close) = −$4,550 loss
 ```
 
-Just one contract. In just a few days. The stock moved $70 in one direction and your loss was **$4,550**.
+Just one contract. In just a few days. The stock moved
+$70 in one direction and your loss was **$4,550**.
 
-> **Key insight:** Even though the option gained $22.50 of extrinsic value, the **$40 of intrinsic value** was the main driver of the loss. When the stock surged past your strike, the option acquired massive intrinsic value that you're on the hook for.
+> **Key insight:** Even though the option gained $22.50 of extrinsic value, the **$40 of intrinsic
+> value** was the main driver of the loss. When the stock surged past your strike, the option
+> acquired massive intrinsic value that you're on the hook for.
 
 ---
 
 ### 🧠 Quiz 3 — Calculating Losses on Short Calls
 
-````quiz
+```quiz
 You short a call option for $8.00 ($800 premium). The stock surges and the option is now worth $25.00 ($2,500 premium). What is your loss?
 
   - [ ] $800
@@ -173,9 +186,9 @@ You short a call option for $8.00 ($800 premium). The stock surges and the optio
 
   - [ ] $3,300
     That's the sum of both premiums, not the difference.
-````
+```
 
-````quiz
+```quiz
 In the Netflix example, the stock was at $440 and the $400 call was worth $62.50. How much of that premium was intrinsic value?
 
   - [ ] $62.50
@@ -189,9 +202,9 @@ In the Netflix example, the stock was at $440 and the $400 call was worth $62.50
 
   - [ ] $400
     That's the strike price.
-````
+```
 
-````quiz
+```quiz
 Why did the Netflix short call option gain extrinsic value ($22.50) even though the stock was already above the strike?
 
   - [ ] Because extrinsic value only exists when options are OTM
@@ -205,38 +218,42 @@ Why did the Netflix short call option gain extrinsic value ($22.50) even though 
 
   - [ ] Because intrinsic value can become extrinsic value
     They are separate components; intrinsic doesn't "become" extrinsic.
-````
+```
 
 ---
 
 ## 4. Breakeven Price for Short Calls
 
-You can still **make money** on a short call even if the stock price is **above the strike price** — as long as it's below your **breakeven price**.
+You can still **make money** on a short call even if the stock price is **above the strike price** —
+as long as it's below your **breakeven price**.
 
 ### Formula
+
 ```
 Breakeven Price = Strike Price + Premium Received
 ```
 
 ### Netflix Example
+
 - Short the $400 call for **$17**
 - Breakeven = $400 + $17 = **$417**
 
-| Stock Price at Expiration | Intrinsic Value | Result |
-|--------------------------|-----------------|--------|
-| $400 | $0 | Full $1,700 profit (option expires worthless) |
-| $410 | $10 | $700 profit ($1,700 − $700) |
-| $417 | $17 | **Breakeven** ($1,700 − $1,700 = $0) |
-| $420 | $20 | $300 loss ($1,700 − $2,000) |
-| $440 | $40 | $2,300 loss (extrinsic also adds to it) |
+| Stock Price at Expiration | Intrinsic Value | Result                                        |
+| ------------------------- | --------------- | --------------------------------------------- |
+| $400                      | $0              | Full $1,700 profit (option expires worthless) |
+| $410                      | $10             | $700 profit ($1,700 − $700)                   |
+| $417                      | $17             | **Breakeven** ($1,700 − $1,700 = $0)          |
+| $420                      | $20             | $300 loss ($1,700 − $2,000)                   |
+| $440                      | $40             | $2,300 loss (extrinsic also adds to it)       |
 
-> **Key insight:** At expiration, extrinsic value is $0. So the option's price equals its intrinsic value. Your breakeven is simply the strike plus what you collected.
+> **Key insight:** At expiration, extrinsic value is $0. So the option's price equals its intrinsic
+> value. Your breakeven is simply the strike plus what you collected.
 
 ---
 
 ### 🧠 Quiz 4 — Breakeven Calculations
 
-````quiz
+```quiz
 You short a call option with a $90 strike for a premium of $5.00 ($500). What is your breakeven stock price at expiration?
 
   - [ ] $90
@@ -250,9 +267,9 @@ You short a call option with a $90 strike for a premium of $5.00 ($500). What is
 
   - [ ] $85
     That's below the strike — you'd make the full premium profit.
-````
+```
 
-````quiz
+```quiz
 You short a $130 call for $3.00 ($300 premium). At expiration, the stock is at $138. What is your P&L?
 
   - [ ] $300 profit
@@ -266,9 +283,9 @@ You short a $130 call for $3.00 ($300 premium). At expiration, the stock is at $
 
   - [ ] $1,100 loss
     That's too high — the intrinsic value is only $8, not $11.
-````
+```
 
-````quiz
+```quiz
 At expiration, why does the breakeven formula simply become Strike + Premium Received?
 
   - [ ] Because extrinsic value doubles at expiration
@@ -282,30 +299,33 @@ At expiration, why does the breakeven formula simply become Strike + Premium Rec
 
   - [ ] Because margin requirements change at expiration
     Margin doesn't affect the breakeven calculation.
-````
+```
 
 ---
 
 ## 5. Margin Requirements — The Cost of Shorting
 
 Shorting options is **incredibly risky** because:
+
 - A call option's price has **no upper limit** (the stock can go to infinity)
 - If you're wrong, your losses can be enormous
 
 Because of this risk, you need a **margin account** with collateral.
 
 ### IWM Example — Margin
+
 - Short IWM $125 call, collect **$466** premium
 - Platform requires **~$2,000** in buying power (collateral) set aside
 - You're putting up $2,000 to potentially make $466
 
-This is the asymmetric risk: you risk $2,000+ in potential losses to make $466. That's why shorting options is considered an **expensive trade to enter** in terms of required capital.
+This is the asymmetric risk: you risk $2,000+ in potential losses to make $466. That's why shorting
+options is considered an **expensive trade to enter** in terms of required capital.
 
 ---
 
 ### 🧠 Quiz 5 — Risk & Margin
 
-````quiz
+```quiz
 Why does shorting a call option have theoretically unlimited risk?
 
   - [ ] Because the option premium keeps increasing
@@ -319,9 +339,9 @@ Why does shorting a call option have theoretically unlimited risk?
 
   - [ ] Because margin requirements double every day
     Margin requirements don't work that way.
-````
+```
 
-````quiz
+```quiz
 In the IWM example, you collected $466 in premium but the platform required $2,000 in collateral. What does this tell you about shorting options?
 
   - [ ] You can always make more than your collateral requirement
@@ -335,9 +355,9 @@ In the IWM example, you collected $466 in premium but the platform required $2,0
 
   - [ ] You should never short options because the margin is too high
     While risky, shorting options is a legitimate strategy — just one that requires understanding the risk.
-````
+```
 
-````quiz
+```quiz
 What is the minimum amount you can lose when you buy an option vs. when you short a call option?
 
   - [ ] Buying: unlimited; Shorting: premium collected
@@ -351,45 +371,53 @@ What is the minimum amount you can lose when you buy an option vs. when you shor
 
   - [ ] Both have limited risk
     Shorting a call has unlimited risk because the stock can rise without limit.
-````
+```
 
 ---
 
 ## 6. Quick Reference Cheat Sheet
 
-| Concept | Formula / Rule |
-|---------|---------------|
-| **Short call profit** | Premium collected − Premium paid to close |
-| **Breakeven (short call)** | Strike Price + Premium Received |
-| **Intrinsic (call)** | max(0, Stock Price − Strike Price) |
-| **Intrinsic (put)** | max(0, Strike Price − Stock Price) |
-| **Extrinsic** | Option Premium − Intrinsic Value |
-| **Buying power effect** | Margin required to enter a short position |
-| **Short call risk** | Theoretically unlimited (stock can rise forever) |
-| **Short put risk** | Substantial (stock can fall to $0) |
-| **At expiration** | Extrinsic value = $0; Option price = Intrinsic value |
+| Concept                    | Formula / Rule                                       |
+| -------------------------- | ---------------------------------------------------- |
+| **Short call profit**      | Premium collected − Premium paid to close            |
+| **Breakeven (short call)** | Strike Price + Premium Received                      |
+| **Intrinsic (call)**       | max(0, Stock Price − Strike Price)                   |
+| **Intrinsic (put)**        | max(0, Strike Price − Stock Price)                   |
+| **Extrinsic**              | Option Premium − Intrinsic Value                     |
+| **Buying power effect**    | Margin required to enter a short position            |
+| **Short call risk**        | Theoretically unlimited (stock can rise forever)     |
+| **Short put risk**         | Substantial (stock can fall to $0)                   |
+| **At expiration**          | Extrinsic value = $0; Option price = Intrinsic value |
 
 ---
 
 ## 7. Summary: The Big Picture
 
 ### When Shorting Works (Your Best Case)
+
 - Stock stays **below** the call strike (or above the put strike)
 - **Time decay** erodes extrinsic value
 - You buy back the option cheaper (or it expires worthless)
 - You keep most or all of the premium
 
 ### When Shorting Fails (Your Worst Case)
+
 - Stock **surges** (for calls) or **crashes** (for puts)
 - Option gains **intrinsic value** rapidly
 - Losses can be **far greater** than the premium collected
 - **Unlimited risk** on short calls
 
 ### The Role of Intrinsic & Extrinsic Value
+
 - **Extrinsic value** is your friend when shorting — it decays over time, working in your favor
-- **Intrinsic value** is your enemy when shorting — it grows as the stock moves against you, and it has no upper limit
-- The best short trades target **100% extrinsic value** options (OTM) where time decay does the heavy lifting
+- **Intrinsic value** is your enemy when shorting — it grows as the stock moves against you, and it
+  has no upper limit
+- The best short trades target **100% extrinsic value** options (OTM) where time decay does the
+  heavy lifting
 
 ---
 
-> **Final thought from the course:** Shorting options flips the script on buying. Instead of hoping the option gains value, you're hoping it loses value as time passes. But that convenience comes with a dangerous trade-off: unlimited risk. Always understand the intrinsic and extrinsic components of the option you're selling before putting up the collateral.
+> **Final thought from the course:** Shorting options flips the script on buying. Instead of hoping
+> the option gains value, you're hoping it loses value as time passes. But that convenience comes
+> with a dangerous trade-off: unlimited risk. Always understand the intrinsic and extrinsic
+> components of the option you're selling before putting up the collateral.

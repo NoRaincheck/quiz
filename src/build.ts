@@ -1,10 +1,5 @@
 import { parse } from "./parser.ts";
-import {
-  renderFullPage,
-  renderIndexPage,
-  renderQuizBlock,
-  type IndexEntry,
-} from "./renderer.ts";
+import { type IndexEntry, renderFullPage, renderIndexPage, renderQuizBlock } from "./renderer.ts";
 import { render } from "@deno/gfm";
 import { ensureDir } from "@std/fs";
 import { basename, join, relative, resolve } from "@std/path";
@@ -53,9 +48,9 @@ for (const entry of entries) {
   const raw = await Deno.readTextFile(inputPath);
   const parsed = parse(raw);
 
-  const title = parsed.frontMatter.title
-    || extractTitle(parsed.segments)
-    || basename(entry.name, ".md");
+  const title = parsed.frontMatter.title ||
+    extractTitle(parsed.segments) ||
+    basename(entry.name, ".md");
 
   let bodyHtml = "";
   for (const segment of parsed.segments) {
@@ -111,7 +106,7 @@ processedEntries.sort((a, b) => {
   return a.indexEntry.title.localeCompare(b.indexEntry.title);
 });
 
-const indexEntries = processedEntries.map(e => e.indexEntry);
+const indexEntries = processedEntries.map((e) => e.indexEntry);
 const indexHtml = renderIndexPage(indexEntries);
 await Deno.writeTextFile(join(absOutputDir, "index.html"), indexHtml);
 console.log(`index.html (with ${indexEntries.length} pages)`);

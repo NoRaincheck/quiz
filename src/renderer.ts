@@ -30,7 +30,9 @@ function renderQuestion(question: Question, qIndex: number, quizIndex: number): 
   }));
 
   return `
-    <div class="quiz-question" data-question-index="${qIndex}" data-correct='${JSON.stringify(question.options.map((o, i) => o.correct ? i : -1).filter(i => i >= 0))}' data-explanations='${JSON.stringify(explanationsData)}'>
+    <div class="quiz-question" data-question-index="${qIndex}" data-correct='${
+    JSON.stringify(question.options.map((o, i) => o.correct ? i : -1).filter((i) => i >= 0))
+  }' data-explanations='${JSON.stringify(explanationsData)}'>
       <p class="quiz-question-text">${escapeHtml(question.text)}</p>
       <div class="quiz-options">${optionsHtml}</div>
       <button class="quiz-check-btn" type="button">Check Answer</button>
@@ -45,7 +47,9 @@ function renderFlashcardQuestion(question: Question, qIndex: number, quizIndex: 
   const explanation = question.options[0]?.explanation || "";
 
   return `
-    <div class="quiz-question flashcard" data-question-index="${qIndex}" data-explanations='${JSON.stringify([{ text: explanation || null, correct: true }])}'>
+    <div class="quiz-question flashcard" data-question-index="${qIndex}" data-explanations='${
+    JSON.stringify([{ text: explanation || null, correct: true }])
+  }'>
       <p class="quiz-question-text">${escapeHtml(question.text)}</p>
       <div class="flashcard-answer" style="display:none;">
         <p class="flashcard-answer-text">${escapeHtml(answer)}</p>

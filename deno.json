@@ -7,5 +7,12 @@
     "@deno/gfm": "jsr:@deno/gfm@0.12",
     "@std/fs": "jsr:@std/fs@1",
     "@std/path": "jsr:@std/path@1"
+  },
+  "fmt": {
+    "lineWidth": 100,
+    "indentWidth": 2,
+    "semiColons": true,
+    "singleQuote": false,
+    "useTabs": false
   }
 }

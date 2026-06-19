@@ -6,11 +6,13 @@ group: "JavaScript Basics"
 
 # Variables in JavaScript
 
-Variables are containers for storing data values. In modern JavaScript, there are three ways to declare variables.
+Variables are containers for storing data values. In modern JavaScript, there are three ways to
+declare variables.
 
 ## `let` and `const`
 
-The `let` keyword declares a block-scoped variable that can be reassigned. The `const` keyword declares a block-scoped variable that cannot be reassigned after initialization.
+The `let` keyword declares a block-scoped variable that can be reassigned. The `const` keyword
+declares a block-scoped variable that cannot be reassigned after initialization.
 
 ```javascript
 let count = 0;
@@ -37,7 +39,8 @@ What is the key difference between `let` and `const`?
 
 ## `var` — The Legacy Way
 
-Before ES6, `var` was the only way to declare variables. It is function-scoped rather than block-scoped, which can lead to surprising behavior.
+Before ES6, `var` was the only way to declare variables. It is function-scoped rather than
+block-scoped, which can lead to surprising behavior.
 
 ```javascript
 if (true) {
@@ -66,7 +69,8 @@ Which declaration should you use by default in modern JavaScript?
 
 ## Scope
 
-Scope determines where a variable is accessible. Block scope (introduced by `let` and `const`) means a variable only exists within the nearest set of curly braces `{}`.
+Scope determines where a variable is accessible. Block scope (introduced by `let` and `const`) means
+a variable only exists within the nearest set of curly braces `{}`.
 
 ```javascript
 function example() {

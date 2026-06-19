@@ -100,9 +100,9 @@ function parseFrontMatter(content: string): FrontMatter {
         // Parse array format: [tag1, tag2, tag3] or just tag1, tag2
         const arrayMatch = /^\[(.+)\]$/.exec(value);
         if (arrayMatch) {
-          result.tags = arrayMatch[1].split(",").map(t => t.trim());
+          result.tags = arrayMatch[1].split(",").map((t) => t.trim());
         } else {
-          result.tags = value.split(",").map(t => t.trim());
+          result.tags = value.split(",").map((t) => t.trim());
         }
       } else if (key === "title") {
         // Remove quotes if present

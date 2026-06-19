@@ -7,7 +7,9 @@ group: "Options Trading"
 
 # Managing a PMCC — 3 Scenarios
 
-> A study guide based on real-world PMCC management scenarios. This guide covers the three situations every PMCC trader faces: the stock approaching the short strike, the short call going deep ITM, and the stock collapsing into a losing position.
+> A study guide based on real-world PMCC management scenarios. This guide covers the three
+> situations every PMCC trader faces: the stock approaching the short strike, the short call going
+> deep ITM, and the stock collapsing into a losing position.
 
 ---
 
@@ -29,10 +31,10 @@ The video explores **three scenarios** for managing a Poor Man's Covered Call:
 
 The video uses a **HOOD (Robinhood) PMCC** as the example:
 
-| Leg | Strike | Expiration | DTE |
-|-----|--------|------------|-----|
-| Long LEAP | $50 Call | Jan 2028 | 647 days |
-| Short Call | $80 Call | May 2026 | ~30 days |
+| Leg        | Strike   | Expiration | DTE      |
+| ---------- | -------- | ---------- | -------- |
+| Long LEAP  | $50 Call | Jan 2028   | 647 days |
+| Short Call | $80 Call | May 2026   | ~30 days |
 
 - Stock was at **$69** when the trade was entered
 - Stock has since risen to **~$80**, testing the short call strike
@@ -42,7 +44,8 @@ The video uses a **HOOD (Robinhood) PMCC** as the example:
 
 ### Why Rolling Matters
 
-When the stock approaches the short strike, **profitability tapers off**. The upside is capped at the short strike. Rolling up and out extends that cap.
+When the stock approaches the short strike, **profitability tapers off**. The upside is capped at
+the short strike. Rolling up and out extends that cap.
 
 ### How to Roll Up and Out
 
@@ -55,29 +58,33 @@ The key principle: **the further out you go, the higher the strike you can sell.
 
 ### Roll Options — Near Term vs. Far Out
 
-| Roll Target | Strike | Credit | New Upside |
-|-------------|--------|--------|------------|
-| June 2026 (65 DTE) | $85 | $6.55 | +$5 points |
-| July 2026 (94 DTE) | $90 | >$6.15 | More upside |
-| Sep 2026 (157 DTE) | $100 | >$6.15 | Significant upside |
+| Roll Target        | Strike | Credit | New Upside         |
+| ------------------ | ------ | ------ | ------------------ |
+| June 2026 (65 DTE) | $85    | $6.55  | +$5 points         |
+| July 2026 (94 DTE) | $90    | >$6.15 | More upside        |
+| Sep 2026 (157 DTE) | $100   | >$6.15 | Significant upside |
 
 ![Rolling up and out — P&L chart showing extended upside with adjustment](../ref/pmcc-3-scenarios/frames/frame_0022.jpg)
 
-**The trade-off:** Rolling to June 2026 only adds ~$5 of upside, but HOOD moved $7.50 in a single day. The further out you roll, the more upside you capture.
+**The trade-off:** Rolling to June 2026 only adds ~$5 of upside, but HOOD moved $7.50 in a single
+day. The further out you roll, the more upside you capture.
 
 ### The Maximum Roll — Converting to a Bull Call Spread
 
-The furthest you can roll the short call is to the **expiration of your long LEAP** (Jan 2028). In this case:
+The furthest you can roll the short call is to the **expiration of your long LEAP** (Jan 2028). In
+this case:
 
 - You could sell the **$220 strike** call in Jan 2028
 - This creates a **$50/$220 bull call spread** with 647 days to expiration
 - **Massively** increases your upside
 
-> ⚠️ **This changes the trade** from a PMCC to a long-term call spread. You lose the benefit of month-to-month rolling and the income stream from repeated short-call sales.
+> ⚠️ **This changes the trade** from a PMCC to a long-term call spread. You lose the benefit of
+> month-to-month rolling and the income stream from repeated short-call sales.
 
 ### Margin Warning
 
-You **cannot** roll the short call beyond the LEAP expiration. Your broker will require **margin** for the naked short call, which ties up capital — defeating the capital efficiency of the PMCC.
+You **cannot** roll the short call beyond the LEAP expiration. Your broker will require **margin**
+for the naked short call, which ties up capital — defeating the capital efficiency of the PMCC.
 
 ### The Trade-Off: Rolling Up and Out vs. Holding
 
@@ -86,17 +93,19 @@ There is a cost to rolling. If the stock reverses and falls back to your origina
 ![Rolling trade-off — P/L delta of -$544 if stock settles at $80 after roll](../ref/pmcc-3-scenarios/frames/frame_0040.jpg)
 
 In the video's example:
+
 - Stock at $87, rolling from $80 to $85 strike (93-day cycle)
 - If HOOD settles at $80 in 30 days, the rolled position is **$544 worse** than holding the original
 - **You sacrifice downside protection for more upside**
 
-> **Key takeaway:** Rolling up and out gives you more upside potential, but you're worse off if the stock reverses to your original short strike level.
+> **Key takeaway:** Rolling up and out gives you more upside potential, but you're worse off if the
+> stock reverses to your original short strike level.
 
 ---
 
 ### 🧠 Quiz 1 — Stock Approaching the Short Strike
 
-````quiz
+```quiz
 In the HOOD PMCC example, what was the original short call strike and premium?
 
   - [ ] $85 strike for $6.55
@@ -110,9 +119,9 @@ In the HOOD PMCC example, what was the original short call strike and premium?
 
   - [ ] $80 strike for $61.50
     The premium was $6.15 per share ($615 total), not $61.50.
-````
+```
 
-````quiz
+```quiz
 To roll a short call for free (zero debit), what must you do?
 
   - [ ] Close the entire position
@@ -126,9 +135,9 @@ To roll a short call for free (zero debit), what must you do?
 
   - [ ] Roll to a nearer expiration with the same strike
     A nearer expiration would cost more, not less.
-````
+```
 
-````quiz
+```quiz
 What is the furthest you can roll the short call in a PMCC?
 
   - [ ] 90 days out
@@ -142,9 +151,9 @@ What is the furthest you can roll the short call in a PMCC?
 
   - [ ] There is no limit
     The LEAP expiration is the hard limit — beyond that, it becomes a naked short.
-````
+```
 
-````quiz
+```quiz
 What is the P/L trade-off when rolling a short call up and out?
 
   - [ ] You always win — more upside with no downside
@@ -158,9 +167,9 @@ What is the P/L trade-off when rolling a short call up and out?
 
   - [ ] The trade-off only matters if the stock goes to zero
     The trade-off matters at any level between the original and new short strikes.
-````
+```
 
-````quiz
+```quiz
 Why can't you roll the short call beyond the LEAP expiration?
 
   - [ ] Because brokers prohibit all diagonal spreads beyond 1 year
@@ -174,7 +183,7 @@ Why can't you roll the short call beyond the LEAP expiration?
 
   - [ ] Because the short call would automatically exercise
     Exercise is determined by the buyer, not the expiration of the long leg.
-````
+```
 
 ---
 
@@ -182,32 +191,35 @@ Why can't you roll the short call beyond the LEAP expiration?
 
 ### The Problem
 
-When the stock surges well above the short strike, the short call has **significant intrinsic value**, making it much harder to roll for a credit.
+When the stock surges well above the short strike, the short call has **significant intrinsic
+value**, making it much harder to roll for a credit.
 
 ### NVDA Example
 
-| Leg | Strike | Stock Price | Intrinsic Value |
-|-----|--------|-------------|-----------------|
-| Stock | — | $196.51 | — |
-| Short Call | $180 | — | $16.51 intrinsic |
-| Short Call Total Premium | — | — | $19.42 |
+| Leg                      | Strike | Stock Price | Intrinsic Value  |
+| ------------------------ | ------ | ----------- | ---------------- |
+| Stock                    | —      | $196.51     | —                |
+| Short Call               | $180   | —           | $16.51 intrinsic |
+| Short Call Total Premium | —      | —           | $19.42           |
 
 To roll the $180 short call for a credit, you need to sell a call worth **more than $19.42**.
 
 ### The Dilemma
 
-| Expiration | Highest Rollable Strike | OTM? |
-|------------|-------------------------|------|
-| June 2026 (65 DTE) | $186 | Still ITM |
-| August 2026 (130 DTE) | $195 | OTM, but only tiny credit ($20.15 vs $19.42) |
+| Expiration            | Highest Rollable Strike | OTM?                                         |
+| --------------------- | ----------------------- | -------------------------------------------- |
+| June 2026 (65 DTE)    | $186                    | Still ITM                                    |
+| August 2026 (130 DTE) | $195                    | OTM, but only tiny credit ($20.15 vs $19.42) |
 
 ![Short call deep ITM — forced to roll far out for OTM strike](../ref/pmcc-3-scenarios/frames/frame_0065.jpg)
 
-**The key insight:** Once the short call is deep ITM, you are **forced to roll far out in time** to find an OTM strike with enough premium.
+**The key insight:** Once the short call is deep ITM, you are **forced to roll far out in time** to
+find an OTM strike with enough premium.
 
 ### The Solution: Convert to a Long-Term Bull Call Spread
 
-When the short call is this deep ITM, the video suggests considering a **full conversion** to a long-term bull call spread:
+When the short call is this deep ITM, the video suggests considering a **full conversion** to a
+long-term bull call spread:
 
 1. **Close the $180 short call**
 2. **Roll to the $250 strike in June 2027** (where the long LEAP is)
@@ -217,13 +229,15 @@ When the short call is this deep ITM, the video suggests considering a **full co
 
 ![Converting to long-term bull call spread — P&L extending much higher](../ref/pmcc-3-scenarios/frames/frame_0095.jpg)
 
-> **When to consider this:** When the short call is so deep ITM that rolling to an OTM strike requires going 130+ days out. At that point, the PMCC structure has broken down, and a long-term bull call spread may be a better fit.
+> **When to consider this:** When the short call is so deep ITM that rolling to an OTM strike
+> requires going 130+ days out. At that point, the PMCC structure has broken down, and a long-term
+> bull call spread may be a better fit.
 
 ---
 
 ### 🧠 Quiz 2 — Short Call Deep ITM
 
-````quiz
+```quiz
 In the NVDA example, what was the intrinsic value of the $180 short call when the stock was at $196.51?
 
   - [ ] $19.42
@@ -237,9 +251,9 @@ In the NVDA example, what was the intrinsic value of the $180 short call when th
 
   - [ ] $250
     $250 was the target strike for the bull call spread conversion.
-````
+```
 
-````quiz
+```quiz
 Why is it difficult to roll a deep ITM short call for a credit?
 
   - [ ] Because near-term options have no premium
@@ -253,9 +267,9 @@ Why is it difficult to roll a deep ITM short call for a credit?
 
   - [ ] Because the LEAP also goes ITM
     The LEAP going ITM is irrelevant to the roll cost.
-````
+```
 
-````quiz
+```quiz
 In the NVDA example, what was the furthest out you needed to go to roll to an OTM strike?
 
   - [ ] June 2026 (65 DTE) — $186 strike
@@ -269,9 +283,9 @@ In the NVDA example, what was the furthest out you needed to go to roll to an OT
 
   - [ ] You couldn't roll to an OTM strike at all
     You could, but only far out in time.
-````
+```
 
-````quiz
+```quiz
 When might converting a PMCC to a long-term bull call spread make sense?
 
   - [ ] When the stock is flat
@@ -285,9 +299,9 @@ When might converting a PMCC to a long-term bull call spread make sense?
 
   - [ ] Never — a PMCC should never be converted
     Sometimes the market moves against you, and adapting is smart.
-````
+```
 
-````quiz
+```quiz
 In the NVDA conversion example, what was the net credit from rolling the $180 short to the $250 strike in June 2027?
 
   - [ ] $0 — it was a debit roll
@@ -301,7 +315,7 @@ In the NVDA conversion example, what was the net credit from rolling the $180 sh
 
   - [ ] $16.51
     $16.51 was the intrinsic value of the original short call.
-````
+```
 
 ---
 
@@ -311,10 +325,10 @@ In the NVDA conversion example, what was the net credit from rolling the $180 sh
 
 The video uses a **TSLA PMCC** as the example:
 
-| Leg | Strike | Expiration | DTE | Entry Price | Current Mark | P/L |
-|-----|--------|------------|-----|-------------|--------------|-----|
-| Long LEAP | $400 Call | Jan 2028 | 647 | $166.00 | $92.95 | **−$7,305** |
-| Short Call | $420 Call | May 2026 | 31 | $20.90 | $4.13 | **+$1,677** |
+| Leg        | Strike    | Expiration | DTE | Entry Price | Current Mark | P/L         |
+| ---------- | --------- | ---------- | --- | ----------- | ------------ | ----------- |
+| Long LEAP  | $400 Call | Jan 2028   | 647 | $166.00     | $92.95       | **−$7,305** |
+| Short Call | $420 Call | May 2026   | 31  | $20.90      | $4.13        | **+$1,677** |
 
 - Stock has dropped significantly
 - The short call is **up 80%** of its max value (good for the short)
@@ -332,12 +346,14 @@ Since the short call is profitable (up 80%), you **can buy it back for a profit*
 - Rolling too far down leaves you vulnerable to a sharp reversal
 
 **Conservative approach:**
+
 - Buy back the $420 short call
 - Sell the **$400 call** in the **same expiration cycle**
 - This collects additional credit while keeping the short call in a shorter-term OTM position
 - Shorter-term OTM calls decay faster
 
-> **Warning:** Rolling down reduces your downside protection. If the stock bounces back, you'll be worse off with a lower short strike.
+> **Warning:** Rolling down reduces your downside protection. If the stock bounces back, you'll be
+> worse off with a lower short strike.
 
 ### Option B: Full Restructure — Close and Reset
 
@@ -349,29 +365,31 @@ The most aggressive option is to **close both legs and restart the entire positi
 
 Then reopen with a fresh PMCC:
 
-| New Leg | Strike | Expiration | Cost |
-|---------|--------|------------|------|
-| New LEAP | $350 Call | Jun 2027 | ~$9,000 |
-| New Short | $440 Call | 65 DTE | Collects premium |
+| New Leg   | Strike    | Expiration | Cost             |
+| --------- | --------- | ---------- | ---------------- |
+| New LEAP  | $350 Call | Jun 2027   | ~$9,000          |
+| New Short | $440 Call | 65 DTE     | Collects premium |
 
 **Net result:** ~$527 credit to close the old position and open the new one.
 
 ![Full restructure — closing old PMCC and opening a new one with lower LEAP strike](../ref/pmcc-3-scenarios/frames/frame_0120.jpg)
 
 **Trade-offs of restructuring:**
+
 - ✅ Lower LEAP strike ($350 vs $400) = better entry
 - ✅ New short call is further OTM ($440 vs $420) = more room
 - ✅ $527 credit in your pocket
 - ❌ Lost ~180 days on the LEAP expiration
 - ⚠️ **Wash sale risk** — closing at a loss and immediately reopening may trigger wash sale rules
 
-> **Important:** The wash sale rule applies when you close a position at a loss and buy a "substantially identical" security within 30 days. Consult a tax professional.
+> **Important:** The wash sale rule applies when you close a position at a loss and buy a
+> "substantially identical" security within 30 days. Consult a tax professional.
 
 ---
 
 ### 🧠 Quiz 3 — Stock Collapsed
 
-````quiz
+```quiz
 In the TSLA example, what was the P/L on the short $420 call when the stock had collapsed?
 
   - [ ] −$7,305
@@ -385,9 +403,9 @@ In the TSLA example, what was the P/L on the short $420 call when the stock had 
 
   - [ ] $0 — the short call was worthless
     The short call was worth $4.13, not zero.
-````
+```
 
-````quiz
+```quiz
 Why should you be cautious about rolling the short call too aggressively down when the stock has collapsed?
 
   - [ ] Because the short call will expire worthless anyway
@@ -401,9 +419,9 @@ Why should you be cautious about rolling the short call too aggressively down wh
 
   - [ ] Because the LEAP will recover faster than the short call decays
     LEAP recovery is uncertain — the risk is on the short strike being too low.
-````
+```
 
-````quiz
+```quiz
 What is the "conservative" approach to rolling the short call down in a losing position?
 
   - [ ] Roll to a further expiration with a lower strike
@@ -417,9 +435,9 @@ What is the "conservative" approach to rolling the short call down in a losing p
 
   - [ ] Hold the position and do nothing
     Doing nothing isn't rolling — the question is about rolling conservatively.
-````
+```
 
-````quiz
+```quiz
 In the TSLA restructure example, what was the net credit from closing the old PMCC and opening the new one?
 
   - [ ] $0 — the costs and credits balanced out
@@ -433,9 +451,9 @@ In the TSLA restructure example, what was the net credit from closing the old PM
 
   - [ ] $9,000
     $9,000 was the total credit from closing, but the new LEAP cost ~$9,000.
-````
+```
 
-````quiz
+```quiz
 What tax consideration should you be aware of when fully restructuring a losing PMCC?
 
   - [ ] Capital gains tax on the short call profit
@@ -449,9 +467,9 @@ What tax consideration should you be aware of when fully restructuring a losing 
 
   - [ ] There are no tax considerations for restructuring
     Tax considerations definitely exist, especially with wash sales.
-````
+```
 
-````quiz
+```quiz
 What trade-off does the full restructure approach involve?
 
   - [ ] You gain a lower LEAP strike but lose ~180 days of LEAP time
@@ -465,17 +483,17 @@ What trade-off does the full restructure approach involve?
 
   - [ ] You lose the ability to sell short calls going forward
     You can continue selling short calls on the new position.
-````
+```
 
 ---
 
 ## 4. Comparison — All Three Scenarios Side by Side
 
-| Scenario | Stock Action | Short Call Status | Best Approach | Risk |
-|----------|-------------|-------------------|---------------|------|
-| **1. Approaching strike** | Rising to short strike | OTM, testing | Roll up and out for credit | Worse if stock reverses to original strike |
-| **2. Deep ITM** | Surged far above strike | Deep ITM, high intrinsic | Convert to long-term bull call spread | Loses PMCC flexibility, long time commitment |
-| **3. Collapsed** | Dropped significantly | ITM but profitable | Roll down conservatively or restructure | Reversal risk (roll down) or wash sale (restructure) |
+| Scenario                  | Stock Action            | Short Call Status        | Best Approach                           | Risk                                                 |
+| ------------------------- | ----------------------- | ------------------------ | --------------------------------------- | ---------------------------------------------------- |
+| **1. Approaching strike** | Rising to short strike  | OTM, testing             | Roll up and out for credit              | Worse if stock reverses to original strike           |
+| **2. Deep ITM**           | Surged far above strike | Deep ITM, high intrinsic | Convert to long-term bull call spread   | Loses PMCC flexibility, long time commitment         |
+| **3. Collapsed**          | Dropped significantly   | ITM but profitable       | Roll down conservatively or restructure | Reversal risk (roll down) or wash sale (restructure) |
 
 ---
 
@@ -483,11 +501,14 @@ What trade-off does the full restructure approach involve?
 
 ### Principle 1: The Short Call Premium Defines Your Roll
 
-To roll for free, you must **collect more than the buyback cost**. The short call premium ($6.15 in the HOOD example, $19.42 in the NVDA example) is your **minimum target** for any roll.
+To roll for free, you must **collect more than the buyback cost**. The short call premium ($6.15 in
+the HOOD example, $19.42 in the NVDA example) is your **minimum target** for any roll.
 
 ### Principle 2: Time Is Your Ally for Finding Credits
 
-The further out you go, the more premium you collect. This is why rolling to the LEAP expiration (as in the HOOD example's maximum roll) gives you the most flexibility — but also changes the trade structure.
+The further out you go, the more premium you collect. This is why rolling to the LEAP expiration (as
+in the HOOD example's maximum roll) gives you the most flexibility — but also changes the trade
+structure.
 
 ### Principle 3: Every Adjustment Has a Trade-Off
 
@@ -499,6 +520,7 @@ The further out you go, the more premium you collect. This is why rolling to the
 ### Principle 4: Don't Force Adjustments
 
 Sometimes the best move is to **do nothing**:
+
 - If the short call expires OTM, keep the premium and repeat
 - If the stock is flat, the PMCC is working as intended
 - Only adjust when the thesis is at risk
@@ -571,14 +593,18 @@ In the HOOD maximum roll example, what strike could you sell in Jan 2028?
 
 ## 7. Summary — When to Act
 
-| Situation | Action | Urgency |
-|-----------|--------|---------|
-| Stock approaching short strike | Roll up and out for credit | Medium — plan ahead |
-| Stock surges far above short strike | Consider long-term bull call spread | High — acting sooner gives more options |
-| Stock drops, short call profitable | Consider rolling down conservatively | Low — short call is working for you |
-| Stock drops, full restructure needed | Close and reset with lower LEAP strike | Medium — watch wash sale rules |
-| Stock flat, short call OTM | **Do nothing** — keep premium, repeat | N/A — this is the sweet spot |
+| Situation                            | Action                                 | Urgency                                 |
+| ------------------------------------ | -------------------------------------- | --------------------------------------- |
+| Stock approaching short strike       | Roll up and out for credit             | Medium — plan ahead                     |
+| Stock surges far above short strike  | Consider long-term bull call spread    | High — acting sooner gives more options |
+| Stock drops, short call profitable   | Consider rolling down conservatively   | Low — short call is working for you     |
+| Stock drops, full restructure needed | Close and reset with lower LEAP strike | Medium — watch wash sale rules          |
+| Stock flat, short call OTM           | **Do nothing** — keep premium, repeat  | N/A — this is the sweet spot            |
 
 ---
 
-> **Final thought:** Managing a PMCC is about **anticipation, not reaction**. The best adjustments are planned before the stock gets to the strike. When the short call is already deep ITM, your options narrow significantly. And when the stock collapses, the short call's profit may be tempting to lock in — but rolling too far down can leave you exposed to a reversal. Know your three levers: **roll up, roll down, or restructure** — and understand the trade-off of each.
+> **Final thought:** Managing a PMCC is about **anticipation, not reaction**. The best adjustments
+> are planned before the stock gets to the strike. When the short call is already deep ITM, your
+> options narrow significantly. And when the stock collapses, the short call's profit may be
+> tempting to lock in — but rolling too far down can leave you exposed to a reversal. Know your
+> three levers: **roll up, roll down, or restructure** — and understand the trade-off of each.

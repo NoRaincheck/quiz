@@ -142,7 +142,7 @@ function parseQuizBlockInternal(content: string): QuizBlock {
 
   // Detect type: multiple correct = checkbox, single correct = radio
   for (const q of questions) {
-    const correctCount = q.options.filter(o => o.correct).length;
+    const correctCount = q.options.filter((o) => o.correct).length;
     q.type = correctCount > 1 ? "checkbox" : "multiple-choice";
   }
 

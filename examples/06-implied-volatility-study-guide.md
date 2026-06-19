@@ -7,41 +7,48 @@ group: "Options Trading"
 
 # Implied Volatility — Study Guide
 
-> A self-study companion built from the Options Trading Beginners course. Read each section, then test yourself with the embedded quiz.
+> A self-study companion built from the Options Trading Beginners course. Read each section, then
+> test yourself with the embedded quiz.
 
 ---
 
 ## 1. What Is Implied Volatility?
 
-Implied volatility (IV) is the **market's expected magnitude of a stock's price fluctuations** in the future. Don't let the term intimidate you — swap out the words and you get:
+Implied volatility (IV) is the **market's expected magnitude of a stock's price fluctuations** in
+the future. Don't let the term intimidate you — swap out the words and you get:
 
 > **Implied Volatility = Expected Magnitude of Stock Price Fluctuations**
 
-The key insight: **option prices imply the level of expected volatility.** When you look at two similarly priced stocks and one has significantly more expensive options, that stock has higher implied volatility — the market expects larger price swings.
+The key insight: **option prices imply the level of expected volatility.** When you look at two
+similarly priced stocks and one has significantly more expensive options, that stock has higher
+implied volatility — the market expects larger price swings.
 
 ### The Visa vs. Teladoc Example (from the course)
 
 Two stocks with nearly identical share prices:
 
-| | Visa (V) | Teladoc (TDOC) |
-|---|----------|----------------|
-| **Stock Price** | ~$179 | ~$180 |
-| **Option** | June 180 Call | June 180 Call |
-| **Days to Expiration** | 36 | 36 |
-| **Option Premium** | **$7.35** | **$15.45** |
+|                        | Visa (V)      | Teladoc (TDOC) |
+| ---------------------- | ------------- | -------------- |
+| **Stock Price**        | ~$179         | ~$180          |
+| **Option**             | June 180 Call | June 180 Call  |
+| **Days to Expiration** | 36            | 36             |
+| **Option Premium**     | **$7.35**     | **$15.45**     |
 
-Same stock price. Same strike price. Same time to expiration. But Teladoc's call option costs **twice as much** as Visa's.
+Same stock price. Same strike price. Same time to expiration. But Teladoc's call option costs
+**twice as much** as Visa's.
 
 - **Visa 180 call:** $7.35 → costs $735 per contract
 - **Teladoc 180 call:** $15.45 → costs $1,545 per contract
 
-Both options are out of the money (strike is slightly above stock price), so the entire premium is **extrinsic value**. The difference in extrinsic value tells us that the market expects Teladoc shares to move significantly more than Visa shares over the next 36 days.
+Both options are out of the money (strike is slightly above stock price), so the entire premium is
+**extrinsic value**. The difference in extrinsic value tells us that the market expects Teladoc
+shares to move significantly more than Visa shares over the next 36 days.
 
 ---
 
 ### 🧠 Quiz 1 — Implied Volatility Basics
 
-````quiz
+```quiz
 What does implied volatility measure?
 
   - [ ] The historical price range of a stock
@@ -55,9 +62,9 @@ What does implied volatility measure?
 
   - [ ] The time remaining until an option expires
     Time to expiration is a separate factor from implied volatility.
-````
+```
 
-````quiz
+```quiz
 Two stocks are both trading at $50. Stock A has a 30-day $55 call priced at $1.20. Stock B has the same 30-day $55 call priced at $3.80. Which stock has higher implied volatility?
 
   - [ ] Stock A, because its option is cheaper
@@ -71,31 +78,36 @@ Two stocks are both trading at $50. Stock A has a 30-day $55 call priced at $1.2
 
   - [ ] Cannot be determined from this information
     We have enough information — same stock price, same strike, same expiration — to compare IV.
-````
+```
 
 ---
 
 ## 2. Why Does Implied Volatility Differ Between Stocks?
 
-The market prices options based on how much a stock is expected to move. A stock with larger daily price ranges (higher **historical volatility**) will tend to have higher implied volatility because:
+The market prices options based on how much a stock is expected to move. A stock with larger daily
+price ranges (higher **historical volatility**) will tend to have higher implied volatility because:
 
-1. **Buyers pay more** for options on volatile stocks — there's a higher chance those options become significantly intrinsically valuable before expiration.
+1. **Buyers pay more** for options on volatile stocks — there's a higher chance those options become
+   significantly intrinsically valuable before expiration.
 2. **Sellers demand more** premium to take on the risk of writing options on volatile stocks.
 
 ### Historical Volatility Connection
 
-In the Visa vs. Teladoc comparison, the course showed daily high-to-low price ranges over several weeks:
+In the Visa vs. Teladoc comparison, the course showed daily high-to-low price ranges over several
+weeks:
 
 - **Visa:** daily range of ~$6 (e.g., on May 14th)
 - **Teladoc:** daily range of ~$13–$14 (same day)
 
-Teladoc's daily price swings were roughly **twice the magnitude** of Visa's. This observed (historical) volatility directly explains why Teladoc's options cost twice as much — the market is pricing in those larger expected moves.
+Teladoc's daily price swings were roughly **twice the magnitude** of Visa's. This observed
+(historical) volatility directly explains why Teladoc's options cost twice as much — the market is
+pricing in those larger expected moves.
 
 ---
 
 ### 🧠 Quiz 2 — Connecting IV to Volatility
 
-````quiz
+```quiz
 Why do options on a volatile stock typically cost more than options on a stable stock (assuming same price, strike, and expiration)?
 
   - [ ] Volatile stocks always go up
@@ -109,9 +121,9 @@ Why do options on a volatile stock typically cost more than options on a stable 
 
   - [ ] Stable stocks have fewer option buyers
     Both stocks can have plenty of option activity; the price difference reflects risk expectations.
-````
+```
 
-````quiz
+```quiz
 A stock historically moves $2 per day on average. Another stock moves $10 per day. Both trade at $100. If all other factors are equal, which stock's options will likely have higher implied volatility?
 
   - [ ] The $2/day stock
@@ -125,7 +137,7 @@ A stock historically moves $2 per day on average. Another stock moves $10 per da
 
   - [ ] Implied volatility is unrelated to how much a stock moves
     IV is directly tied to expected price movement, which is informed by historical patterns.
-````
+```
 
 ---
 
@@ -135,15 +147,19 @@ This is a critical and often misunderstood concept:
 
 > **Option price changes cause implied volatility changes — not the other way around.**
 
-Many beginners think IV is some external percentage that moves option prices. In reality, when option prices increase (due to higher demand, new information, or increased uncertainty), IV goes up. When option prices decrease, IV goes down.
+Many beginners think IV is some external percentage that moves option prices. In reality, when
+option prices increase (due to higher demand, new information, or increased uncertainty), IV goes
+up. When option prices decrease, IV goes down.
 
 ### Example: News Hits Visa
 
-Imagine Visa's 180 call is trading at $7.35. Then news comes out that causes the market to expect significantly more price movement from Visa through the June expiration:
+Imagine Visa's 180 call is trading at $7.35. Then news comes out that causes the market to expect
+significantly more price movement from Visa through the June expiration:
 
 1. Options traders start **buying Visa options aggressively**
 2. Increased demand pushes the option price up — say from $7.35 to $15.00
-3. Since the stock price and time to expiration haven't changed, this price increase is reflected as **higher implied volatility**
+3. Since the stock price and time to expiration haven't changed, this price increase is reflected as
+   **higher implied volatility**
 
 The option got more expensive → that's what caused IV to increase.
 
@@ -151,7 +167,7 @@ The option got more expensive → that's what caused IV to increase.
 
 ### 🧠 Quiz 3 — IV Changes
 
-````quiz
+```quiz
 Which of the following best describes the relationship between option prices and implied volatility?
 
   - [ ] Implied volatility changes cause option prices to change
@@ -165,9 +181,9 @@ Which of the following best describes the relationship between option prices and
 
   - [ ] Only time decay affects implied volatility
     Time decay affects extrinsic value, but IV changes are driven by shifts in option prices from other factors.
-````
+```
 
-````quiz
+```quiz
 A call option is trading at $5.00. A major earnings announcement is scheduled for next week, and traders expect a large price move. Demand for the option surges and the price rises to $8.00 while the stock price stays the same. What happened to implied volatility?
 
   - [ ] It decreased
@@ -181,7 +197,7 @@ A call option is trading at $5.00. A major earnings announcement is scheduled fo
 
   - [ ] It became zero
     There's no scenario where IV becomes zero from an increase in option prices.
-````
+```
 
 ---
 
@@ -189,10 +205,10 @@ A call option is trading at $5.00. A major earnings announcement is scheduled fo
 
 When trading options, you can make or lose money from **three sources**:
 
-| Source | Description |
-|--------|-------------|
-| **Stock price movement** | Directional gain or loss |
-| **Time decay** | Extrinsic value shrinking as expiration approaches |
+| Source                         | Description                                               |
+| ------------------------------ | --------------------------------------------------------- |
+| **Stock price movement**       | Directional gain or loss                                  |
+| **Time decay**                 | Extrinsic value shrinking as expiration approaches        |
 | **Implied volatility changes** | Option prices changing from shifts in market expectations |
 
 ### Buying Options and IV
@@ -205,13 +221,14 @@ When trading options, you can make or lose money from **three sources**:
 - **IV decreases → you profit** (option prices fall, you buy back cheaper)
 - **IV increases → you lose money** (option prices rise against your position)
 
-Some traders specifically buy options when IV is low (hoping it rises) and sell options when IV is high (hoping it falls).
+Some traders specifically buy options when IV is low (hoping it rises) and sell options when IV is
+high (hoping it falls).
 
 ---
 
 ### 🧠 Quiz 4 — Trading Implications
 
-````quiz
+```quiz
 You buy a call option for $4.00 when implied volatility is low. The stock price stays flat, no time passes, but IV increases significantly. What happens to your position?
 
   - [ ] You lose money
@@ -225,9 +242,9 @@ You buy a call option for $4.00 when implied volatility is low. The stock price 
 
   - [ ] Your option becomes worthless
     An increase in IV increases option value, it doesn't destroy it.
-````
+```
 
-````quiz
+```quiz
 You sell (short) a put option for $6.00 when implied volatility is very high. Two days later, IV drops and the option is now trading for $3.50. What is your profit?
 
   - [ ] You lost $2.50
@@ -241,9 +258,9 @@ You sell (short) a put option for $6.00 when implied volatility is very high. Tw
 
   - [ ] $3.50
     $3.50 is the current price, not your profit.
-````
+```
 
-````quiz
+```quiz
 Which scenario would benefit a trader who bought call options?
 
   - [x] The stock price rises AND implied volatility increases
@@ -257,7 +274,7 @@ Which scenario would benefit a trader who bought call options?
 
   - [ ] The stock price stays flat AND time passes with no IV change
     Time decay alone erodes the option's value.
-````
+```
 
 ---
 
@@ -270,15 +287,17 @@ Think of **implied volatility like an insurance premium:**
 - **Healthy lifestyle** → Low insurance premium → Low IV (not much risk expected)
 - **Unhealthy lifestyle** → High insurance premium → High IV (more risk expected)
 
-The insurance company charges you more when they expect higher risk of claims. Similarly, the options market charges higher premiums when it expects larger stock price swings.
+The insurance company charges you more when they expect higher risk of claims. Similarly, the
+options market charges higher premiums when it expects larger stock price swings.
 
-The premium going from cheap to expensive **causes** IV to increase — just like your insurance premium going up reflects increased risk expectations.
+The premium going from cheap to expensive **causes** IV to increase — just like your insurance
+premium going up reflects increased risk expectations.
 
 ---
 
 ### 🧠 Quiz 5 — Putting It All Together
 
-````quiz
+```quiz
 In the Visa vs. Teladoc example, why does the Teladoc 180 call cost $15.45 while the Visa 180 call costs $7.35?
 
   - [ ] Teladoc is a more popular stock
@@ -292,9 +311,9 @@ In the Visa vs. Teladoc example, why does the Teladoc 180 call cost $15.45 while
 
   - [ ] Teladoc has a higher stock price
     Both stocks are priced around $179–$180.
-````
+```
 
-````quiz
+```quiz
 A trader buys options when IV is at a historical low. They plan to profit when IV rises back to normal levels. What is this strategy based on?
 
   - [ ] Time decay
@@ -308,9 +327,9 @@ A trader buys options when IV is at a historical low. They plan to profit when I
 
   - [ ] Selling options at high prices
     This trader is buying, not selling.
-````
+```
 
-````quiz
+```quiz
 Which of the following statements about implied volatility is TRUE?
 
   - [ ] IV only affects put options
@@ -324,31 +343,33 @@ Which of the following statements about implied volatility is TRUE?
 
   - [x] Changes in IV can cause profits or losses even when the stock price doesn't move
     IV changes directly affect option prices. A trader can profit or lose from IV movement alone, independent of stock price direction.
-````
+```
 
 ---
 
 ## 6. Quick Reference Cheat Sheet
 
-| Concept | Definition |
-|---------|-----------|
-| **Implied Volatility (IV)** | The market's expected magnitude of future stock price fluctuations |
-| **What implies IV** | Option prices — higher prices = higher IV (all else equal) |
-| **IV vs. Historical Volatility** | Historical = past observed moves; Implied = expected future moves |
-| **IV Increase** | Option prices rise (for any reason besides stock movement or time) |
-| **IV Decrease** | Option prices fall (for any reason besides stock movement or time) |
-| **Long Options + IV ↑** | Profit |
-| **Long Options + IV ↓** | Loss |
-| **Short Options + IV ↓** | Profit |
-| **Short Options + IV ↑** | Loss |
+| Concept                          | Definition                                                         |
+| -------------------------------- | ------------------------------------------------------------------ |
+| **Implied Volatility (IV)**      | The market's expected magnitude of future stock price fluctuations |
+| **What implies IV**              | Option prices — higher prices = higher IV (all else equal)         |
+| **IV vs. Historical Volatility** | Historical = past observed moves; Implied = expected future moves  |
+| **IV Increase**                  | Option prices rise (for any reason besides stock movement or time) |
+| **IV Decrease**                  | Option prices fall (for any reason besides stock movement or time) |
+| **Long Options + IV ↑**          | Profit                                                             |
+| **Long Options + IV ↓**          | Loss                                                               |
+| **Short Options + IV ↓**         | Profit                                                             |
+| **Short Options + IV ↑**         | Loss                                                               |
 
 ### Key Formula
+
 ```
 Option prices change → Implied Volatility changes
 (NOT the other way around)
 ```
 
 ### Insurance Analogy
+
 ```
 Low risk  → Low premium  → Low IV
 High risk → High premium → High IV
@@ -356,4 +377,8 @@ High risk → High premium → High IV
 
 ---
 
-> **Final thought from the course:** Implied volatility is one of the three forces that determine your P&L in options trading — along with stock price movement and time decay. Understanding that IV is derived from option prices (not the other way around) is a key insight that separates informed traders from beginners. Master this concept, and you'll understand why options on some stocks cost so much more than others.
+> **Final thought from the course:** Implied volatility is one of the three forces that determine
+> your P&L in options trading — along with stock price movement and time decay. Understanding that
+> IV is derived from option prices (not the other way around) is a key insight that separates
+> informed traders from beginners. Master this concept, and you'll understand why options on some
+> stocks cost so much more than others.
