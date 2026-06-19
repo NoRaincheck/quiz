@@ -8,6 +8,7 @@ import {
 import { render } from "@deno/gfm";
 import { ensureDir } from "@std/fs";
 import { basename, join, relative, resolve } from "@std/path";
+import type { FrontMatter } from "./types.ts";
 
 const args = Deno.args;
 let contentDir = "examples";
@@ -40,14 +41,21 @@ if (entries.length === 0) {
   Deno.exit(0);
 }
 
-const indexEntries: IndexEntry[] = [];
+interface ProcessedEntry {
+  indexEntry: IndexEntry;
+  frontMatter: FrontMatter;
+}
+
+const processedEntries: ProcessedEntry[] = [];
 
 for (const entry of entries) {
   const inputPath = join(absContentDir, entry.name);
   const raw = await Deno.readTextFile(inputPath);
   const parsed = parse(raw);
 
-  const title = extractTitle(parsed.segments) || basename(entry.name, ".md");
+  const title = parsed.frontMatter.title
+    || extractTitle(parsed.segments)
+    || basename(entry.name, ".md");
 
   let bodyHtml = "";
   for (const segment of parsed.segments) {
@@ -85,10 +93,25 @@ for (const entry of entries) {
   const relOut = relative(Deno.cwd(), outPath);
   console.log(`${relIn} → ${relOut}`);
 
-  indexEntries.push({ title, filename: outName });
+  processedEntries.push({
+    indexEntry: {
+      title,
+      filename: outName,
+      group: parsed.frontMatter.group,
+    },
+    frontMatter: parsed.frontMatter,
+  });
 }
 
-indexEntries.sort((a, b) => a.title.localeCompare(b.title));
+// Sort by order first, then by title
+processedEntries.sort((a, b) => {
+  const orderA = a.frontMatter.order ?? Infinity;
+  const orderB = b.frontMatter.order ?? Infinity;
+  if (orderA !== orderB) return orderA - orderB;
+  return a.indexEntry.title.localeCompare(b.indexEntry.title);
+});
+
+const indexEntries = processedEntries.map(e => e.indexEntry);
 const indexHtml = renderIndexPage(indexEntries);
 await Deno.writeTextFile(join(absOutputDir, "index.html"), indexHtml);
 console.log(`index.html (with ${indexEntries.length} pages)`);

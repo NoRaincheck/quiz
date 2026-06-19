@@ -1,3 +1,10 @@
+export interface FrontMatter {
+  title?: string;
+  order?: number;
+  tags?: string[];
+  group?: string;
+}
+
 export interface QuizOption {
   text: string;
   correct: boolean;
@@ -7,14 +14,16 @@ export interface QuizOption {
 export interface Question {
   text: string;
   options: QuizOption[];
-  type: "multiple-choice" | "checkbox";
+  type: "multiple-choice" | "checkbox" | "flashcard";
 }
 
 export interface QuizBlock {
   questions: Question[];
+  kind: "quiz" | "flashcard";
 }
 
 export interface ParsedContent {
+  frontMatter: FrontMatter;
   segments: ContentSegment[];
 }
 

@@ -1,3 +1,9 @@
+---
+title: "JavaScript Variables"
+tags: [javascript, variables, let, const, var]
+group: "JavaScript Basics"
+---
+
 # Variables in JavaScript
 
 Variables are containers for storing data values. In modern JavaScript, there are three ways to declare variables.
@@ -92,3 +98,18 @@ Select all valid variable declarations (check all that apply):
 - Use `let` when you need to reassign
 - Avoid `var` in modern JavaScript
 - Remember that `let` and `const` are block-scoped
+
+## Flash Cards
+
+Use flash cards for quick reference and memorization:
+
+```flashcard
+What is a closure?
+  A function that remembers and can access variables from its outer (enclosing) scope even after the outer function has finished executing.
+
+What is hoisting?
+  JavaScript's behavior of moving variable and function declarations to the top of their scope during compilation, making them accessible before they are declared.
+
+What is the difference between == and ===?
+  == performs type coercion before comparison, while === compares both value and type without coercion.
+```

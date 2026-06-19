@@ -8,6 +8,11 @@ export function renderQuizBlock(quiz: QuizBlock, index: number): string {
 function renderQuestion(question: Question, qIndex: number, quizIndex: number): string {
   const id = `q${quizIndex}-${qIndex}`;
   const isCheckbox = question.type === "checkbox";
+  const isFlashcard = question.type === "flashcard";
+
+  if (isFlashcard) {
+    return renderFlashcardQuestion(question, qIndex, quizIndex);
+  }
 
   const optionsHtml = question.options.map((opt, oi) => {
     const inputType = isCheckbox ? "checkbox" : "radio";
@@ -15,16 +20,38 @@ function renderQuestion(question: Question, qIndex: number, quizIndex: number): 
     return `
       <label class="quiz-option" for="${optId}">
         <input type="${inputType}" name="${id}" id="${optId}" value="${oi}" />
-        <span class="quiz-option-text"><em>${escapeHtml(opt.text)}</em>${opt.explanation ? ` <span class="quiz-explanation">${escapeHtml(opt.explanation)}</span>` : ""}</span>
+        <span class="quiz-option-text"><em>${escapeHtml(opt.text)}</em></span>
       </label>`;
   }).join("\n");
 
+  const explanationsData = question.options.map((opt) => ({
+    text: opt.explanation || null,
+    correct: opt.correct,
+  }));
+
   return `
-    <div class="quiz-question" data-question-index="${qIndex}" data-correct='${JSON.stringify(question.options.map((o, i) => o.correct ? i : -1).filter(i => i >= 0))}'>
+    <div class="quiz-question" data-question-index="${qIndex}" data-correct='${JSON.stringify(question.options.map((o, i) => o.correct ? i : -1).filter(i => i >= 0))}' data-explanations='${JSON.stringify(explanationsData)}'>
       <p class="quiz-question-text">${escapeHtml(question.text)}</p>
       <div class="quiz-options">${optionsHtml}</div>
       <button class="quiz-check-btn" type="button">Check Answer</button>
       <div class="quiz-result" aria-live="polite"></div>
+      <div class="quiz-explanations"></div>
+    </div>`;
+}
+
+function renderFlashcardQuestion(question: Question, qIndex: number, quizIndex: number): string {
+  const id = `fc${quizIndex}-${qIndex}`;
+  const answer = question.options[0]?.text || "";
+  const explanation = question.options[0]?.explanation || "";
+
+  return `
+    <div class="quiz-question flashcard" data-question-index="${qIndex}" data-explanations='${JSON.stringify([{ text: explanation || null, correct: true }])}'>
+      <p class="quiz-question-text">${escapeHtml(question.text)}</p>
+      <div class="flashcard-answer" style="display:none;">
+        <p class="flashcard-answer-text">${escapeHtml(answer)}</p>
+      </div>
+      <button class="quiz-check-btn flashcard-reveal-btn" type="button">Reveal Answer</button>
+      <div class="quiz-explanations"></div>
     </div>`;
 }
 
@@ -49,12 +76,44 @@ export function renderFullPage(title: string, bodyHtml: string): string {
 export interface IndexEntry {
   title: string;
   filename: string;
+  group?: string;
 }
 
 export function renderIndexPage(entries: IndexEntry[]): string {
-  const links = entries
-    .map((e) => `      <li><a href="${escapeHtml(e.filename)}">${escapeHtml(e.title)}</a></li>`)
-    .join("\n");
+  // Group entries by group
+  const grouped = new Map<string, IndexEntry[]>();
+  const ungrouped: IndexEntry[] = [];
+
+  for (const entry of entries) {
+    const group = entry.group || "";
+    if (group) {
+      if (!grouped.has(group)) {
+        grouped.set(group, []);
+      }
+      grouped.get(group)!.push(entry);
+    } else {
+      ungrouped.push(entry);
+    }
+  }
+
+  let linksHtml = "";
+
+  // Render ungrouped entries first
+  if (ungrouped.length > 0) {
+    linksHtml += ungrouped
+      .map((e) => `      <li><a href="${escapeHtml(e.filename)}">${escapeHtml(e.title)}</a></li>`)
+      .join("\n");
+  }
+
+  // Render grouped entries
+  for (const [group, groupEntries] of grouped) {
+    if (linksHtml) linksHtml += "\n";
+    linksHtml += `      <li class="index-group-header">${escapeHtml(group)}</li>\n`;
+    linksHtml += groupEntries
+      .map((e) => `      <li><a href="${escapeHtml(e.filename)}">${escapeHtml(e.title)}</a></li>`)
+      .join("\n");
+  }
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,13 +134,22 @@ export function renderIndexPage(entries: IndexEntry[]): string {
       transition: background 0.15s;
     }
     .index-list a:hover { background: var(--option-hover); }
+    .index-group-header {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      padding: 0.5rem 0;
+      border-bottom: 2px solid var(--accent);
+      color: var(--fg);
+    }
   </style>
 </head>
 <body>
   <main class="content">
     <h1>Quiz Pages</h1>
     <ul class="index-list">
-${links}
+${linksHtml}
     </ul>
   </main>
 </body>
@@ -238,15 +306,22 @@ tr:nth-child(even) {
   font-weight: 500;
 }
 
-.quiz-explanation {
+.quiz-explanations {
   display: none;
-  font-size: 0.875rem;
-  color: var(--explanation-fg);
-  font-style: italic;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
 }
 
-.quiz-question.revealed .quiz-explanation {
-  display: inline;
+.quiz-question.revealed .quiz-explanations {
+  display: block;
+}
+
+.quiz-explanation-item {
+  font-size: 0.875rem;
+  margin-top: 0.35rem;
+  line-height: 1.5;
+  color: var(--explanation-fg);
 }
 
 .quiz-option.correct {
@@ -299,6 +374,41 @@ tr:nth-child(even) {
   text-align: center;
   font-weight: 600;
 }
+
+.flashcard {
+  background: var(--quiz-bg);
+  border: 1px solid var(--quiz-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.flashcard .flashcard-answer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.flashcard .flashcard-answer-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--correct-border);
+}
+
+.flashcard-reveal-btn {
+  margin-top: 0.75rem;
+  padding: 0.5rem 1.25rem;
+  background: var(--accent);
+  color: var(--btn-fg);
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.flashcard-reveal-btn:hover { opacity: 0.9; }
+.flashcard-reveal-btn:disabled { opacity: 0.5; cursor: default; }
 `;
 
 const QUIZ_JS = `
@@ -309,10 +419,31 @@ const QUIZ_JS = `
   let correct = 0;
 
   questions.forEach(function(q) {
+    const isFlashcard = q.classList.contains('flashcard');
     const btn = q.querySelector('.quiz-check-btn');
     const result = q.querySelector('.quiz-result');
-    const correctIndices = JSON.parse(q.dataset.correct);
-    const isCheckbox = q.querySelector('input[type="checkbox"]') !== null;
+    const correctIndices = JSON.parse(q.dataset.correct || '[]');
+
+    if (isFlashcard) {
+      btn.addEventListener('click', function() {
+        const answerDiv = q.querySelector('.flashcard-answer');
+        answerDiv.style.display = 'block';
+        btn.disabled = true;
+        btn.textContent = 'Revealed';
+
+        const explanationsData = JSON.parse(q.dataset.explanations);
+        const explanationsDiv = q.querySelector('.quiz-explanations');
+        var html = '';
+        explanationsData.forEach(function(item) {
+          if (item && item.text) {
+            html += '<div class="quiz-explanation-item"><span class="quiz-explanation-text">' + item.text + '</span></div>';
+          }
+        });
+        explanationsDiv.innerHTML = html;
+        q.classList.add('revealed');
+      });
+      return;
+    }
 
     btn.addEventListener('click', function() {
       const inputs = q.querySelectorAll('input');
@@ -337,7 +468,7 @@ const QUIZ_JS = `
         result.textContent = 'Correct!';
         result.style.color = 'var(--correct-border)';
       } else {
-        result.textContent = 'Incorrect. See explanations below.';
+        result.textContent = 'Incorrect.';
         result.style.color = 'var(--incorrect-border)';
       }
 
@@ -350,6 +481,16 @@ const QUIZ_JS = `
           inputs[i].closest('.quiz-option').classList.add('correct');
         }
       });
+
+      const explanationsData = JSON.parse(q.dataset.explanations);
+      const explanationsDiv = q.querySelector('.quiz-explanations');
+      var html = '';
+      explanationsData.forEach(function(item) {
+        if (item && item.text) {
+          html += '<div class="quiz-explanation-item"><span class="quiz-explanation-text">' + item.text + '</span></div>';
+        }
+      });
+      explanationsDiv.innerHTML = html;
 
       answered++;
       if (answered === totalQuestions) {

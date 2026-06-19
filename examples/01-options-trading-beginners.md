@@ -1,3 +1,10 @@
+---
+title: "Options Trading for Beginners: Call Options"
+order: 1
+tags: [options, calls, beginners]
+group: "Options Trading"
+---
+
 # Options Trading for Beginners: Call Options Study Guide
 
 ## Introduction

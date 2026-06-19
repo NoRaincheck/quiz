@@ -2,6 +2,11 @@
 
 A static web page and quiz builder for creating quizzes, flash cards etc for revision and learning.
 
+## Use cases
+
+- **Personal study** — embed questions alongside your notes and test yourself interactively. Note: since this is a static HTML file, answers are visible in the source code, so this is best suited for self-study rather than formal assessment.
+- **LLM-generated study guides** — use an LLM to draft quiz content from any topic or document, then plug it into a markdown file and build.
+
 ## How this works
 
 Embed quizzes in your markdown file using fenced code blocks with the `quiz` tag:

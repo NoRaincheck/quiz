@@ -1,6 +1,67 @@
 import type { Question, QuizBlock, QuizOption } from "./types.ts";
 
-export function parseQuizBlock(content: string): QuizBlock {
+export function parseQuizBlock(content: string, kind: "quiz" | "flashcard" = "quiz"): QuizBlock {
+  if (kind === "flashcard") {
+    return parseFlashcardBlock(content);
+  }
+  return parseQuizBlockInternal(content);
+}
+
+function parseFlashcardBlock(content: string): QuizBlock {
+  const lines = content.split("\n");
+  const questions: Question[] = [];
+  let currentQuestion: Question | null = null;
+  let currentAnswer: string[] = [];
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    const isIndented = /^\s{2,}/.test(line);
+
+    if (!trimmed) {
+      // Empty line = flush current flashcard
+      if (currentQuestion) {
+        currentQuestion.options = [{
+          text: currentAnswer.join(" ").trim(),
+          correct: true,
+        }];
+        questions.push(currentQuestion);
+        currentQuestion = null;
+        currentAnswer = [];
+      }
+      continue;
+    }
+
+    if (isIndented) {
+      // Indented line = answer text
+      currentAnswer.push(trimmed);
+      continue;
+    }
+
+    // Non-indented line = new question (or flush previous)
+    if (currentQuestion) {
+      currentQuestion.options = [{
+        text: currentAnswer.join(" ").trim(),
+        correct: true,
+      }];
+      questions.push(currentQuestion);
+      currentAnswer = [];
+    }
+    currentQuestion = { text: trimmed, options: [], type: "flashcard" };
+  }
+
+  // Flush last flashcard
+  if (currentQuestion) {
+    currentQuestion.options = [{
+      text: currentAnswer.join(" ").trim(),
+      correct: true,
+    }];
+    questions.push(currentQuestion);
+  }
+
+  return { questions, kind: "flashcard" };
+}
+
+function parseQuizBlockInternal(content: string): QuizBlock {
   const lines = content.split("\n");
   const questions: Question[] = [];
   let currentQuestion: Question | null = null;
@@ -85,7 +146,7 @@ export function parseQuizBlock(content: string): QuizBlock {
     q.type = correctCount > 1 ? "checkbox" : "multiple-choice";
   }
 
-  return { questions };
+  return { questions, kind: "quiz" };
 }
 
 function splitExplanation(raw: string): { text: string; explanation?: string } {
